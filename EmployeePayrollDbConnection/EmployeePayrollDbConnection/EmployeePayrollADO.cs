@@ -84,10 +84,10 @@ namespace EmployeePayrollDbConnection
             {
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
+                    connection.Open();
                     SqlDataAdapter da = new SqlDataAdapter("select * from Employee_Payroll", connection);
                     DataTable dt = new DataTable();
                     da.Fill(dt);
-
                     foreach (DataRow row in dt.Rows)
                     {
                         Console.WriteLine(row["EmpId"] + ",  " + row["Empname"] + ",  " + row["EmpDept"]+", " + row["NetPay"]);
@@ -97,6 +97,38 @@ namespace EmployeePayrollDbConnection
             {
                 Console.WriteLine(e.Message);
             }
+            finally
+            {
+                connection.Close();
+            }
         }
+
+        public void UpdateDatabase(string empName, string phNo)
+        {
+            try
+            {
+                using (SqlConnection Connection = new SqlConnection(connectionString))
+                {
+                    SqlCommand command = new SqlCommand("spEmployee_Payroll_UpdateData", Connection);
+                    command.CommandType = CommandType.StoredProcedure;
+                    Connection.Open();
+                    command.Parameters.AddWithValue("@EmpName", empName);
+                    command.Parameters.AddWithValue("@EmpPhNo", phNo);
+                    var result = command.ExecuteNonQuery();
+                    Connection.Close();
+                    if (result != 0)
+                    {
+                        Console.WriteLine("Row Updated Successfully");
+                        return;
+                    }
+                    Console.WriteLine("Row Not Updated!!");
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message.ToString());
+            }
+            
+        }   
     }
 }

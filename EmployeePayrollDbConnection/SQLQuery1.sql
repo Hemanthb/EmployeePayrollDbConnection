@@ -24,3 +24,15 @@ AS
 BEGIN
 	INSERT INTO Employee_Payroll VALUES (@EmpName,@EmpPhNo,@EmpAddress,@EmpDept,@StartDate,@BasicPay,@Deductions,@IncomeTax,@NetPay,@Gender)
 END
+
+-- UC -> 4 Stored Procedure for Update query
+
+GO
+CREATE or ALTER PROCEDURE dbo.spEmployee_Payroll_UpdateData
+(@EmpName VARCHAR(30),@EmpPhNo VARCHAR(30))
+AS
+BEGIN
+	UPDATE Employee_Payroll SET EmpPhNo = @EmpPhNo WHERE EmpName = @EmpName
+END
+
+select * from Employee_Payroll;
