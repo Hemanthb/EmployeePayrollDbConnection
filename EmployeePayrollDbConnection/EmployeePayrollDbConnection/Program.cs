@@ -1,7 +1,7 @@
 ﻿EmployeePayrollDbConnection.EmployeePayrollADO payrollADO = new EmployeePayrollDbConnection.EmployeePayrollADO();
 EmployeePayrollDbConnection.EmployeePayrollModel model = new EmployeePayrollDbConnection.EmployeePayrollModel();
 Console.WriteLine("Enter your choice for CRUD OPERATION ->");
-Console.WriteLine("\t1 - To Establish Db Connection\n\t2 - To add Data to Database\n");
+Console.WriteLine("\t1 - To Establish Db Connection\n\t2 - To add Data to Database\n\t3 - Retrieve & Display Employee details\n");
 int choice = Convert.ToInt32(Console.ReadLine());
 switch (choice)
 {
@@ -30,6 +30,9 @@ switch (choice)
         Console.WriteLine("Enter Net Pay");
         model.NetPay = Convert.ToDouble(Console.ReadLine());
         payrollADO.AddData(model);
+        break;
+    case 3:
+        payrollADO.RetrieveData();
         break;
 
 }

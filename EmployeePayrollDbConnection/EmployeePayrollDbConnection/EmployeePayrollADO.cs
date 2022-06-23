@@ -76,5 +76,27 @@ namespace EmployeePayrollDbConnection
                 connection.Close();
             }
         }
+
+        public void RetrieveData()
+        {
+            
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    SqlDataAdapter da = new SqlDataAdapter("select * from Employee_Payroll", connection);
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+
+                    foreach (DataRow row in dt.Rows)
+                    {
+                        Console.WriteLine(row["EmpId"] + ",  " + row["Empname"] + ",  " + row["EmpDept"]+", " + row["NetPay"]);
+                    }
+                }
+            }catch(Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+        }
     }
 }
