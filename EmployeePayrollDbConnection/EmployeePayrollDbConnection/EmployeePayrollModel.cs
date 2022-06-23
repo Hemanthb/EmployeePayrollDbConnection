@@ -8,20 +8,17 @@ namespace EmployeePayrollDbConnection
 {
     public class EmployeePayrollModel
     {
-        public class EmployeePayroll_Model
-        {
-            public int empId { get; set; }
-            public string empName { get; set; }
-            public double salary { get; set; }
-            public DateTime startDate { get; set; }
-            public string gender { get; set; }
-            public decimal mobile { get; set; }
-            public string address { get; set; }
-            public string department { get; set; }
-            public double basicPay { get; set; }
-            public double deductions { get; set; }
-            public double taxablePay { get; set; }
-            public double netPay { get; set; }
-        }
+        public int EmpId { get; set; }
+        public string EmpName { get; set; }
+        public DateTime StartDate { get; set; }
+        public string Gender { get; set; }
+        public string EmpPhNo { get; set; }
+        public string EmpAddress { get; set; }
+        public string EmpDept { get; set; }
+        public double BasicPay { get; set; }
+        public double Deductions { get; set; }
+        public double IncomeTax { get; set; }
+        public double NetPay { get; set; }
+        
     }
 }

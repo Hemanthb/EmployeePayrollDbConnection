@@ -37,5 +37,44 @@ namespace EmployeePayrollDbConnection
                 this.connection.Close();
             }
         }
+
+        public void AddData(EmployeePayrollModel model)
+        {
+            SqlConnection connection = new SqlConnection(connectionString);
+            try
+            {
+                using (connection)
+                {
+                    SqlCommand command = new SqlCommand("spEmployee_Payroll_AddData", connection);
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@EmpName", model.EmpName);
+                    command.Parameters.AddWithValue("@EmpPhNo", model.EmpPhNo);
+                    command.Parameters.AddWithValue("@EmpAddress", model.EmpAddress);
+                    command.Parameters.AddWithValue("@EmpDept", model.EmpDept);
+                    command.Parameters.AddWithValue("@StartDate", model.StartDate);
+                    command.Parameters.AddWithValue("@BasicPay", model.BasicPay);
+                    command.Parameters.AddWithValue("@Deductions", model.Deductions);
+                    command.Parameters.AddWithValue("@IncomeTax", model.IncomeTax);
+                    command.Parameters.AddWithValue("@NetPay", model.NetPay);
+                    command.Parameters.AddWithValue("@Gender", model.Gender);
+                    connection.Open();
+                    var result = command.ExecuteNonQuery();
+                    if (result != 0)
+                    {
+                        Console.WriteLine("Added a new Data succesfully!!");
+                        return;
+                    }
+                    Console.WriteLine("New Data not Added!!");
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
+        }
     }
 }
