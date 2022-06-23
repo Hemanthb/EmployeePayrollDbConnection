@@ -2,7 +2,7 @@
 EmployeePayrollDbConnection.EmployeePayrollModel model = new EmployeePayrollDbConnection.EmployeePayrollModel();
 Console.WriteLine("Enter your choice for CRUD OPERATION ->");
 Console.WriteLine("\t1 - To Establish Db Connection\n\t2 - To add Data to Database\n\t3 - Retrieve & Display Employee details\n" +
-    "\t4 - Update Employee Database\n");
+    "\t4 - Update Employee Database\n\t5 - To Delete a Data\n");
 int choice = Convert.ToInt32(Console.ReadLine());
 switch (choice)
 {
@@ -41,6 +41,11 @@ switch (choice)
         Console.WriteLine("Enter New Phone Number:");
         string phNo = Console.ReadLine();
         payrollADO.UpdateDatabase(name, phNo);
+        break;
+    case 5:
+        Console.WriteLine("Enter the name of person whose Data has to be Deleted");
+        string empName = Console.ReadLine();
+        payrollADO.DeleteData(empName);
         break;
 
 }

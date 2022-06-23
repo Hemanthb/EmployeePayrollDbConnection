@@ -12,7 +12,9 @@ namespace EmployeePayrollDbConnection
     {
         public static string connectionString = "Data Source = (localdb)\\MSSQLLOCALDB;Initial Catalog = EmployeePayrollDatabase;";
         SqlConnection connection = new SqlConnection(connectionString);
-        public DataSet GetConnection()
+
+        //To establish Connection
+        public void GetConnection()
         {
             try
             {
@@ -25,7 +27,7 @@ namespace EmployeePayrollDbConnection
                     adapter.Fill(data);
                     this.connection.Close();
                     Console.WriteLine("Connection Established");
-                    return data;
+                    
                 }
             }
             catch (Exception e)
@@ -37,7 +39,7 @@ namespace EmployeePayrollDbConnection
                 this.connection.Close();
             }
         }
-
+        //To Insert or add new data
         public void AddData(EmployeePayrollModel model)
         {
             SqlConnection connection = new SqlConnection(connectionString);
@@ -76,7 +78,7 @@ namespace EmployeePayrollDbConnection
                 connection.Close();
             }
         }
-
+        //To retrieve and display data
         public void RetrieveData()
         {
             
@@ -102,7 +104,7 @@ namespace EmployeePayrollDbConnection
                 connection.Close();
             }
         }
-
+        //To update a table
         public void UpdateDatabase(string empName, string phNo)
         {
             try
@@ -129,6 +131,31 @@ namespace EmployeePayrollDbConnection
                 throw new Exception(ex.Message.ToString());
             }
             
-        }   
+        }
+        //To delete a row or data from a table
+        public void DeleteData(string name)
+        {
+            try
+            {
+                using (SqlConnection Connection = new SqlConnection(connectionString))
+                {
+                    string sql = "DELETE FROM Employee_Payroll WHERE EmpName = '"+name+"'";
+                    SqlCommand Command = new SqlCommand(sql, Connection);
+                    Connection.Open();
+                    var result = Command.ExecuteNonQuery();
+                    Connection.Close();
+                    if (result != 0)
+                    {
+                        Console.WriteLine("Data is Deleted Successfully");
+                        return;
+                    }
+                    Console.WriteLine("Data is not Deleted!!");
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+        }
     }
 }
