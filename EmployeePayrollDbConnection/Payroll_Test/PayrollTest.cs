@@ -5,7 +5,7 @@ namespace Payroll_Test
     {
         EmployeePayrollDbConnection.EmployeePayrollADO payroll = new EmployeePayrollDbConnection.EmployeePayrollADO();
         [TestMethod]
-        public void GivenMultipleEmployeeDetails_AddEmpDetailsWithoutThread_ShouldReturnTatalExecutionTime()
+        public void GivenMultipleEmployeeDetails_AddEmpDetailsWithAndWithoutThread_ShouldReturnTatalExecutionTime()
         {
             List<EmployeePayrollDbConnection.EmployeePayrollModel> empList = new List<EmployeePayrollDbConnection.EmployeePayrollModel>();
             empList.Add(new EmployeePayrollDbConnection.EmployeePayrollModel(empId: 1, empName: "Sreyas", startDate: new DateTime(2022, 06, 01), gender: "M", empPhNo: "9877065432", empAddress: "Calicut", empDept: "Developer", basicPay: 20000, deductions: 200, incomeTax: 500, netPay: 19500));
@@ -15,6 +15,11 @@ namespace Payroll_Test
             payroll.AddMultipleEmployees(empList);
             DateTime endTime = DateTime.Now;
             Console.WriteLine("Time Taken: " + (endTime - startTime));
+
+            DateTime startTimeWithThreading = DateTime.Now;
+            payroll.AddMultipleEmployeesUsingThread(empList);
+            DateTime endTimeWithThreading = DateTime.Now;
+            Console.WriteLine("Time Taken with Threading: " + (endTimeWithThreading - startTimeWithThreading));
         }
     }
 }
