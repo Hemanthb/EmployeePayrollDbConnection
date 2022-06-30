@@ -157,5 +157,14 @@ namespace EmployeePayrollDbConnection
                 Console.WriteLine(e.Message);
             }
         }
+        public void AddMultipleEmployees(List<EmployeePayrollModel> model)
+        {
+            model.ForEach(data =>
+            {
+                Console.WriteLine("Employees being Added");
+                this.AddData(data);
+                Console.WriteLine("Employees Added " + data.EmpName);
+            });
+        }
     }
 }

@@ -19,6 +19,21 @@ namespace EmployeePayrollDbConnection
         public double Deductions { get; set; }
         public double IncomeTax { get; set; }
         public double NetPay { get; set; }
-        
+
+        public EmployeePayrollModel() { }
+        public EmployeePayrollModel(int empId, string empName, DateTime startDate, string gender, string empPhNo, string empAddress, string empDept, double basicPay, double deductions, double incomeTax, double netPay)
+        {
+            EmpId = empId;
+            EmpName = empName;
+            StartDate = startDate;
+            Gender = gender;
+            EmpPhNo = empPhNo;
+            EmpAddress = empAddress;
+            EmpDept = empDept;
+            BasicPay = basicPay;
+            Deductions = deductions;
+            IncomeTax = incomeTax;
+            NetPay = netPay;
+        }
     }
 }
