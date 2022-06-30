@@ -2,7 +2,7 @@
 EmployeePayrollDbConnection.EmployeePayrollModel model = new EmployeePayrollDbConnection.EmployeePayrollModel();
 Console.WriteLine("Enter your choice for CRUD OPERATION ->");
 Console.WriteLine("\t1 - To Establish Db Connection\n\t2 - To add Data to Database\n\t3 - Retrieve & Display Employee details\n" +
-    "\t4 - Update Employee Database\n\t5 - To Delete a Data\n");
+    "\t4 - Update Employee Database\n\t5 - To Delete a Data\n\t6 - To Add MultipleEmployees Using Thread&Synchronisation\n");
 int choice = Convert.ToInt32(Console.ReadLine());
 switch (choice)
 {
@@ -47,5 +47,10 @@ switch (choice)
         string empName = Console.ReadLine();
         payrollADO.DeleteData(empName);
         break;
-
+    case 6:
+        List<EmployeePayrollDbConnection.EmployeePayrollModel> empList = new List<EmployeePayrollDbConnection.EmployeePayrollModel>();
+        empList.Add(new EmployeePayrollDbConnection.EmployeePayrollModel(empId: 1, empName: "Sreyas", startDate: new DateTime(2022, 06, 01), gender: "M", empPhNo: "9877065432", empAddress: "Calicut", empDept: "Developer", basicPay: 20000, deductions: 200, incomeTax: 500, netPay: 19500));
+        empList.Add(new EmployeePayrollDbConnection.EmployeePayrollModel(empId: 2, empName: "Aparna", startDate: new DateTime(2022, 05, 01), gender: "F", empPhNo: "9877065132", empAddress: "kannur", empDept: "Developer", basicPay: 25000, deductions: 300, incomeTax: 700, netPay: 24000));
+        payrollADO.AddMultipleEmployeesUsingThread(empList);
+        break;
 }
