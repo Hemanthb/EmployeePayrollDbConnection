@@ -91,5 +91,17 @@ namespace RestSharpTestCases
             Assert.AreEqual("55000", data.Salary);
             Console.WriteLine(response.Content);
         }
+        [TestMethod]
+        public void OnDeletingEmployeeData_ShouldDeleteOnJsonServer()
+        {
+            client = new RestClient("http://localhost:4000");
+            //Arrange
+            RestRequest request = new RestRequest("/employees/11", Method.Delete);
+            //Act
+            RestResponse response = client.Execute(request);
+            //Assert
+            Assert.AreEqual(response.StatusCode, HttpStatusCode.OK);
+            Console.WriteLine(response.Content);
+        }
     }
 }
