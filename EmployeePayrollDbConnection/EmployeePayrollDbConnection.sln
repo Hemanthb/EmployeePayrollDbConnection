@@ -5,7 +5,9 @@ VisualStudioVersion = 17.2.32505.173
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmployeePayrollDbConnection", "EmployeePayrollDbConnection\EmployeePayrollDbConnection.csproj", "{A5639A7E-6DC4-46B7-AC4F-A406FCF93F1E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Payroll_Test", "Payroll_Test\Payroll_Test.csproj", "{864BDA3A-79B2-4374-B3DA-40260BF4E287}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Payroll_Test", "Payroll_Test\Payroll_Test.csproj", "{864BDA3A-79B2-4374-B3DA-40260BF4E287}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestSharpTestCases", "RestSharpTestCases\RestSharpTestCases.csproj", "{47A87B59-56B6-4ABE-8E33-78E27CFC5D06}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{864BDA3A-79B2-4374-B3DA-40260BF4E287}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{864BDA3A-79B2-4374-B3DA-40260BF4E287}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{864BDA3A-79B2-4374-B3DA-40260BF4E287}.Release|Any CPU.Build.0 = Release|Any CPU
+		{47A87B59-56B6-4ABE-8E33-78E27CFC5D06}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{47A87B59-56B6-4ABE-8E33-78E27CFC5D06}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{47A87B59-56B6-4ABE-8E33-78E27CFC5D06}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{47A87B59-56B6-4ABE-8E33-78E27CFC5D06}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
