@@ -14,7 +14,7 @@ namespace RestSharpTestCases
     public class RESTSharpTest
     {
         RestClient client;
-
+        
         [TestMethod]
         public void OnCallingGetMethod_ShouldReturnEmployeeList()
         {
@@ -49,6 +49,29 @@ namespace RestSharpTestCases
             Assert.AreEqual("Krishnan", data.Name);
             Assert.AreEqual("45000", data.Salary);
             Console.WriteLine(response.Content);
+        }
+        [TestMethod]
+        public void OnPostingMultipleEmployees_ShouldAddToJsonServer()
+        {
+            client = new RestClient("http://localhost:4000");
+            //Arrange
+            List<Employee> list = new List<Employee>();
+            list.Add(new Employee { Name = "Nikhil", Salary = "30000" });
+            list.Add(new Employee { Name = "William", Salary = "25000" });
+            list.Add(new Employee { Name = "Anagha", Salary = "30000" });
+            list.ForEach(body =>
+            {
+                RestRequest request = new RestRequest("/employees", Method.Post);
+                request.AddParameter("application/json", body, ParameterType.RequestBody);
+                //Act
+                RestResponse response = client.Execute(request);
+                //Assert
+                Assert.AreEqual(response.StatusCode, HttpStatusCode.Created);
+                Employee data = JsonConvert.DeserializeObject<Employee>(response.Content);
+                Assert.AreEqual(body.Name, data.Name);
+                Assert.AreEqual(body.Salary, data.Salary);
+                Console.WriteLine(response.Content);
+            });
         }
     }
 }
